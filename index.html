@@ -81,6 +81,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         equipment.
       </section>
       <section>
+        <h2>Lossy vs Lossless Compression</h2>
+        <p>Lossless to lossy is a one way conversion</p>
+        <p>You cannot get back fidelity once it's been thrown away</p>
+        <img src="enhance.png" alt="enhance"/>
+      </section>
+      <section>
         <h2>Codecs</h2>
         Codecs are how the media data is represented, or encoded.  Some
         codecs are lossy like MP3, some are lossless like FLAC.  Most codecs
@@ -132,6 +138,23 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <section>
       <section>
         <h2>Transcoding</h2>
+      </section>
+      <section>
+        <h2>Why?</h2>
+        Not all browsers support all codecs.
+        A lossy to lossy conversion is preferable to asking the user to install
+        a different browser.
+      </section>
+      <section>
+        <h2>FFMPEG</h2>
+        <p>Your free and Open Source transcoding swiss army knife.</p>
+      </section>
+      <section>
+        <h2>The Extreme Basics</h2>
+        <pre><code class="bash">
+  ffmpeg -i input.wav output.mp3
+  ffmpeg -i input.y4m -i input.wav output.webm
+        </code></pre>
       </section>
     </section>
     <section>
