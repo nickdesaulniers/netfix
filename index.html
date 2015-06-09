@@ -41,16 +41,114 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <!-- Any section element inside of this container is displayed as a slide -->
   <div class="slides">
     <section>
-      <h1>Reveal.js</h1>
-      <h3>The HTML Presentation Framework</h3>
+      <h1>Let's Make a Netflix</h1>
+      <h3>An Intro to Streaming Media on the Web</h3>
       <p>
-      <small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+      <small><a href="https://nickdesaulniers.github.io/">Nick Desaulniers</a> / <a href="http://twitter.com/lostoracle">@LostOracle</a></small>
       </p>
     </section>
-
-
-  </div>
-
+    <section>
+      <h2>Topics</h2>
+      <p class="fragment">Terminology</p>
+      <p class="fragment">Transcoding</p>
+      <p class="fragment">Audio &amp; Video tags</p>
+      <p class="fragment">MSE</p>
+      <p class="fragment">DASH</p>
+    </section>
+    <section>
+      <section>
+        <h2>Terminology</h2>
+      </section>
+      <section>
+        <h2>Pulse Coded Modulation</h2>
+        Audio PCM streams are made up of a sample rate: how frequently the
+        amplitude is measured (ex. 320 Mbps), and bit depth: how many
+        possible digital values can be represented by one sample.
+      </section>
+      <section>
+        <h2>Compression</h2>
+        The Digital to Audio Converter (DAC) on your computer's soundcard
+        expects PCM (HD Audio or AC'97), but PCM is large and therefore
+        expensive to store and transmit.
+      </section>
+      <section>
+        <h2>Lossy vs Lossless Compression</h2>
+        Lossless compression allows us to more efficiently represent the
+        same uncompressed data.  Lossy compression sacrifices fidelity for
+        size.  Lossy compression allows you to store thousands of songs on
+        your portable media player.  Lossless compression allows you to store
+        and play media that sounds fantastic on your expensive audio playing
+        equipment.
+      </section>
+      <section>
+        <h2>Codecs</h2>
+        Codecs are how the media data is represented, or encoded.  Some
+        codecs are lossy like MP3, some are lossless like FLAC.  Most codecs
+        are encumbered by patents. :(
+      </section>
+      <section>
+        <h2>Containers</h2>
+        Containers such as WAV, MP4, and Ogg represent the meta-data of a
+        media file such as artist or duration, subtitles, etc.  Containers,
+        in addition to their meta-data, will contain streams of audio or
+        video encoded via a specific codec.
+      </section>
+      <section>
+        <h2>File Extension</h2>
+        Sometimes used by OS to determine what program should open what file.
+        Unreliable; anyone can change the file extension of a given file, but
+        that does not change the encoding (how the bits are arranged) or the
+        container (how the meta-data and streams are packaged).
+      </section>
+      <section>
+        <h2>Playlists</h2>
+        Playlist files are used by media playing applications to play
+        subsequent mediums.  Browsers do not understand playlist files, but
+        playlist files can easily be
+        <a href="https://github.com/nickdesaulniers/javascript-playlist-parser">parsed</a>
+        in JavaScript.
+      </section>
+      <section>
+        <h2>Protocol</h2>
+        How are the bits transferred from one machine to another?  On the
+        Web, HTTP is the most familiar, but there are other protocols used
+        when streaming media such as RTSP and ICY.
+      </section>
+      <section>
+        <h2>Know Your Terms</h2>
+        Codecs, containers, file extensions, playlist files, and protocols
+        are not equivalent.  Ex. Media A could be aac encoded, in an MP4
+        container, with a .m4a extension, listed in a m3u playlist file,
+        served over ICY.
+      </section>
+      <section>
+        <h2>Hardware Acceleration</h2>
+        Media can be decoded in software or in hardware.  Application
+        Specific Integrated Circuits (ASICs) can be faster and more power
+        efficient than General Purpose Processors.  Mobile friendly.  They
+        can also be patent encumbered.
+      </section>
+    </section>
+    <section>
+      <section>
+        <h2>Transcoding</h2>
+      </section>
+    </section>
+    <section>
+      <section>
+        <h2>Audio &amp; Video Tags</h2>
+      </section>
+    </section>
+    <section>
+      <section>
+        <h2>MSE</h2>
+      </section>
+    </section>
+    <section>
+      <section>
+        <h2>DASH</h2>
+      </section>
+    </section>
 </div>
 
 <script src="reveal.js-3.1.0/lib/js/head.min.js"></script>
@@ -63,7 +161,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 Reveal.initialize({
   controls: true,
   progress: true,
-  history: false,
+  history: true,
   center: true,
 
   transition: 'slide', // none/fade/slide/convex/concave/zoom
