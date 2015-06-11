@@ -144,6 +144,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         Not all browsers support all codecs.
         A lossy to lossy conversion is preferable to asking the user to install
         a different browser.
+        <!-- if storage is cheaper than bandwidth, also preferable -->
       </section>
       <section>
         <h2>FFMPEG</h2>
@@ -263,6 +264,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <section>
       <section>
         <h2>DASH</h2>
+      </section>
+      <section>
+        <h2>Adaptive Bitrate Streaming</h2>
+        <img src="abs_ema.png" alt="the gist of serving a segment of certain quality based on an exponential moving average of the measured bandwidth"/>
       </section>
     </section>
 </div>
