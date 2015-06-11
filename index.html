@@ -161,6 +161,31 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       <section>
         <h2>Audio &amp; Video Tags</h2>
       </section>
+      <section>
+        <h2>AudioStream</h2>
+        <p><a href="https://github.com/nickdesaulniers/audiostream">A long time ago, I wanted to build iTunes in the browser.</a></p>
+        <img src="audiostream2.png" alt="audio stream application"/>
+      </section>
+      <section>
+        <h2>AudioStream</h2>
+        <img src="audiostream-arch.png" alt="Diagram of the architecture of audiostream"/>
+      </section>
+      <section>
+        <h2>Byte Range Requests</h2>
+        <p>A browser will make Byte Range Requests on behalf of a media element to
+        buffer content.</p>
+        <small>
+          <p>Request Headers:</p>
+          <ul>
+            <li>Range: bytes=0-</li>
+          </ul>
+          <p>Response Headers:</p>
+          <ul>
+            <li>Content-Length: 1024</li>
+            <li>Content-Range: 0-1023:4096</li>
+          </ul>
+        </small>
+      </section>
     </section>
     <section>
       <section>
