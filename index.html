@@ -170,7 +170,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <h2>Browser Support</h2>
         <small>MediaSource.isTypeSupported()</small>
         <small>
-          <a href="http://www.w3.org/TR/media-source/byte-stream-format-registry.html">MSE Byte Stream Format Registry</a>
+          <a href="http://www.w3.org/TR/media-source/byte-stream-format-registry.html">MSE Byte Stream Format Registry</a>,
+        </small>
+        <small>
+          <a href="http://www.leanbackplayer.com/test/h5mt.html">Notes</a>
         </small>
         <table style="transform: scale(0.75) translateX(-6em);">
           <thead>
@@ -187,14 +190,14 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
             <tr>
               <td>Chrome</td>
               <td style="color: lime;">&#10003;</td>
-              <td style="color: lime;">&#10003;** ***</td>
+              <td style="color: lime;">&#10003;*</td>
               <td style="color: red;">&#10007;</td>
               <td style="color: lime;">&#10003;</td>
               <td style="color: lime;">&#10003;</td>
             </tr>
             <tr>
               <td>Firefox</td>
-              <td style="color: lime;">&#10003;****</td>
+              <td style="color: lime;">&#10003;**</td>
               <td style="color: red;">&#10007;</td>
               <td style="color: red;">&#10007;</td>
               <td style="color: red;">&#10007;</td>
@@ -211,7 +214,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
             <tr>
               <td>Opera</td>
               <td style="color: lime;">&#10003;</td>
-              <td style="color: lime;">&#10003;** ***</td>
+              <td style="color: lime;">&#10003;*</td>
               <td style="color: red;">&#10007;</td>
               <td style="color: red;">&#10007;</td>
               <td style="color: red;">&#10007;</td>
@@ -227,10 +230,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </tbody>
         </table>
         <p>
-          <small>* MediaSource.isTypeSupported('video/mp4; codecs="avc1.4d401e"')</small>
-          <small>** MediaSource.isTypeSupported('video/webm; codecs="vp8"')</small>
-          <small>*** MediaSource.isTypeSupported('video/webm; codecs="vp9"')</small>
-          <small>**** whitelisted to very few sites, like YouTube, FF 38-41/42?</small>
+        <small>* Needs codec specified MediaSource.isTypeSupported('mime; codecs=""')</small>
+          <small>** whitelisted to very few sites, like YouTube, FF 38-41/42?</small>
         </p>
       </section>
     </section>
