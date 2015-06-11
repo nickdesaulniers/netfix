@@ -73,12 +73,15 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       </section>
       <section>
         <h2>Lossy vs Lossless Compression</h2>
-        Lossless compression allows us to more efficiently represent the
-        same uncompressed data.  Lossy compression sacrifices fidelity for
-        size.  Lossy compression allows you to store thousands of songs on
-        your portable media player.  Lossless compression allows you to store
-        and play media that sounds fantastic on your expensive audio playing
-        equipment.
+        <p>
+          Lossless compression allows us to more efficiently represent the
+          same uncompressed data and also sounds fantastic on your expensive
+          audio equipment.
+        </p>
+        <p>
+          Lossy compression sacrifices fidelity for
+          size and allows you to store thousands of songs on your phone.
+        </p>
       </section>
       <section>
         <h2>Lossy vs Lossless Compression</h2>
@@ -141,10 +144,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       </section>
       <section>
         <h2>Why?</h2>
-        Not all browsers support all codecs.
-        A lossy to lossy conversion is preferable to asking the user to install
-        a different browser.
-        <!-- if storage is cheaper than bandwidth, also preferable -->
+        <ul>
+          <li>Not all browsers support all codecs.</li>
+          <li>A lossy to lossy conversion is preferable to asking the user to install
+          a different browser.</li>
+          <li>If storage is cheaper than bandwidth, also preferable.</li>
+        </ul>
       </section>
       <section>
         <h2>FFMPEG</h2>
@@ -186,6 +191,40 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
             <li>Content-Range: 0-1023:4096</li>
           </ul>
         </small>
+      </section>
+      <section>
+        <h2>What if we want finer grain control over loading assets?</h2>
+        <p class="fragment">Why?</p>
+        <p class="fragment">Video is easily an order of magnitude larger in file size than audio.</p>
+        <p class="fragment">Waste of bandwidth if user downloads entire file, but watches only a part.</p>
+      </section>
+      <section>
+        <h2>Binary Data</h2>
+        <pre><code class="javascript">
+  var xhr = new XMLHttpRequest;
+  xhr.open('GET', 'song.mp3');
+  xhr.responseType = 'arraybuffer';
+  xhr.onload = function () {
+    var audio = new Audio;
+    audio.src = URL.createObjectURL(new Blob([xhr.response], {
+      type: 'audio/mpeg' }));
+    audio.oncanplaythrough = audio.play.bind(audio);
+  };
+  xhr.send();
+        </code></pre>
+        <p class="fragment">plus byte range requests?</p>
+      </section>
+      <section>
+        <h2>Binary data + byte range requests</h2>
+        <p>
+          Audio tags don't let us combine arraybuffers, they require one
+          contiguous arraybuffer. Web Audio API can help here.
+        </p>
+        <p class="fragment">But...</p>
+        <p class="fragment">
+          Results in audible clicks between segments. Finding the proper range
+          to segment by is very difficult.  Web Audio API does not help here.
+        </p>
       </section>
     </section>
     <section>
