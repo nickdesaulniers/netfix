@@ -168,42 +168,70 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       </section>
       <section>
         <h2>Browser Support</h2>
-        <table>
+        <small>MediaSource.isTypeSupported()</small>
+        <small>
+          <a href="http://www.w3.org/TR/media-source/byte-stream-format-registry.html">MSE Byte Stream Format Registry</a>
+        </small>
+        <table style="transform: scale(0.75) translateX(-6em);">
           <thead>
             <tr>
               <th>Browser</th>
-              <th>MSE + MP4</th>
-              <th>MSE + WEBM</th>
+              <th>video/mp4</th>
+              <th>video/webm</th>
+              <th>video/mp2t</th>
+              <th>audio/mpeg</th>
+              <th>audio/aac</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Chrome</td>
               <td style="color: lime;">&#10003;</td>
+              <td style="color: lime;">&#10003;** ***</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: lime;">&#10003;</td>
               <td style="color: lime;">&#10003;</td>
             </tr>
             <tr>
               <td>Firefox</td>
-              <td style="color: lime;">&#10003;</td>
+              <td style="color: lime;">&#10003;****</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: red;">&#10007;</td>
               <td style="color: red;">&#10007;</td>
             </tr>
             <tr>
               <td>IE</td>
               <td style="color: lime;">&#10003;</td>
               <td style="color: red;">&#10007;</td>
+              <td style="color: lime;">&#10003;</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: lime;">&#10003;</td>
             </tr>
             <tr>
               <td>Opera</td>
               <td style="color: lime;">&#10003;</td>
-              <td style="color: lime;">&#10003;</td>
+              <td style="color: lime;">&#10003;** ***</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: red;">&#10007;</td>
             </tr>
             <tr>
               <td>Safari</td>
-              <td style="color: lime;">&#10003;</td>
+              <td style="color: lime;">&#10003;*</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: red;">&#10007;</td>
+              <td style="color: red;">&#10007;</td>
               <td style="color: red;">&#10007;</td>
             </tr>
           </tbody>
         </table>
+        <p>
+          <small>* MediaSource.isTypeSupported('video/mp4; codecs="avc1.4d401e"')</small>
+          <small>** MediaSource.isTypeSupported('video/webm; codecs="vp8"')</small>
+          <small>*** MediaSource.isTypeSupported('video/webm; codecs="vp9"')</small>
+          <small>**** whitelisted to very few sites, like YouTube, FF 38-41/42?</small>
+        </p>
       </section>
     </section>
     <section>
