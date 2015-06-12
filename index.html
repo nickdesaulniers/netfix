@@ -394,6 +394,25 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <h2>Media Source Extensions</h2>
         <img src="mse_rel.png" alt="media source extension relationship"/>
       </section>
+      <section>
+        <h2>MSE pseudocode</h2>
+        <pre><code class="coffeescript">
+  m = MediaSource
+  m.onsourceopen = () =&gt;
+    s = m.addSourceBuffer 'codec'
+    while numChunks &lt;= totalChunks
+      s.appendBuffer arrayBufferOfContent
+      if numChunks === totalChunks
+        m.endOfStream()
+  video.src = URL.createObjectURL m
+        </code></pre>
+      </section>
+      <section>
+        <h2>Demo: buffer ASAP</h2>
+      </section>
+      <section>
+        <h2>Demo: Buffer just in time</h2>
+      </section>
     </section>
     <section>
       <section>
