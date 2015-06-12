@@ -32,6 +32,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
+<style>
+  .red { color: red; }
+  .lime { color: lime; }
+</style>
 </head>
 
 <body>
@@ -164,7 +168,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       </section>
       <section>
         <h2>Codec support</h2>
-        <p><code style="color: lime;">ffmpeg -codecs</code> will tell you if you can decode from one codec and encode into another.</p>
+        <p><code class="lime">ffmpeg -codecs</code> will tell you if you can decode from one codec and encode into another.</p>
         <pre><code class="lasso">
   $ ffmpeg -codecs
   DEV.LS h264  H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10 (decoders: h264 h264_vda ) (encoders: libx264 libx264rgb )
@@ -177,7 +181,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       </section>
       <section>
         <h2>FFmpeg</h2>
-        <p><code style="color: lime;">ffmpeg -i input.file</code> will tell you a lot about a file.</p>
+        <p><code class="lime">ffmpeg -i input.file</code> will tell you a lot about a file.</p>
         <!-- idk what lasso is, highlight.js makes it look fun! -->
         <pre><code class="lasso">
   $ ffmpeg -i bunny.mp4
@@ -295,51 +299,100 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <tbody>
             <tr>
               <td>Chrome<small style="vertical-align: baseline;">45</small></td>
-              <td style="color: lime;">&#10003;</td>
-              <td style="color: lime;">&#10003;*</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: lime;">&#10003;</td>
-              <td style="color: lime;">&#10003;</td>
+              <td class="lime">&#10003;</td>
+              <td class="lime">&#10003;*</td>
+              <td class="red">&#10007;</td>
+              <td class="lime">&#10003;</td>
+              <td class="lime">&#10003;</td>
             </tr>
             <tr>
               <td>Firefox <small style="vertical-align: baseline;">38</small></td>
-              <td style="color: lime;">&#10003;**</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
+              <td class="lime">&#10003;**</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
             </tr>
             <tr>
               <td>IE <small style="vertical-align: baseline;">11</style></td>
-              <td style="color: lime;">&#10003;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: lime;">&#10003;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: lime;">&#10003;</td>
+              <td class="lime">&#10003;</td>
+              <td class="red">&#10007;</td>
+              <td class="lime">&#10003;</td>
+              <td class="red">&#10007;</td>
+              <td class="lime">&#10003;</td>
             </tr>
             <tr>
               <td>Opera <small style="vertical-align: baseline;">30</small></td>
-              <td style="color: lime;">&#10003;</td>
-              <td style="color: lime;">&#10003;*</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
+              <td class="lime">&#10003;*</td>
+              <td class="lime">&#10003;*</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
             </tr>
             <tr>
               <td>Safari <small style="vertical-align: baseline;">8</small></td>
-              <td style="color: lime;">&#10003;*</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
-              <td style="color: red;">&#10007;</td>
+              <td class="lime">&#10003;*</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
+              <td class="red">&#10007;</td>
             </tr>
           </tbody>
         </table>
-        <!-- don't judge me! -->
         <p style="margin-top: -1em;">
-        <small>* Needs codec specified MediaSource.isTypeSupported('mime; codecs=""')</small>
-          <small>** whitelisted to very few sites, like YouTube, FF 38-41/42?</small>
+        <small>* Needs codec specified MediaSource.isTypeSupported('mime; codecs=""'); <a href="https://wiki.whatwg.org/wiki/Video_type_parameters#MPEG-4">List</a></small>
+          <small>** whitelisted to very few sites like YouTube, FF 38-41/42? Test in Nightly</small>
         </p>
+      </section>
+      <section>
+        <h2>A note about mp4</h2>
+        <p>mp4 needs to be "fragmented." <a href="http://www.w3.org/TR/media-source/isobmff-byte-stream-format.html#iso-init-segments">From ISO BMFF Byte Stream Format &sect;3</a>:</p>
+        <blockquote>An ISO BMFF initialization segment is defined in this specification as a single File Type Box (<span class="lime">ftyp</span>) followed by a single Movie Header Box (<span class="lime">moov</span>).</blockquote>
+        <p class="fragment">wut?</p>
+      </section>
+      <section>
+        <h4>How to check if your mp4 is properly fragmented</h4>
+        <p>I highly recommend <a href="https://github.com/axiomatic-systems/Bento4">axiomatic-systems/Bento4</a> on GitHub.</p>
+        <pre>
+  $ ./mp4dump ~/Movies/devtools.mp4 | head
+  [<span class="red">ftyp</span>] size=8+24
+  major_brand = isom
+  minor_version = 200
+  compatible_brand = isom
+  compatible_brand = iso2
+  compatible_brand = avc1
+  compatible_brand = mp41
+  [<span class="red">free</span>] size=8+0
+  [<span class="red">mdat</span>] size=8+85038690
+  [<span class="red">moov</span>] size=8+599967
+          </pre>
+          <p class="fragment">...<span class="lime">ftype</span> followed by a single <span class="lime">moov</span>...</p>
+      </section>
+      <section>
+        <h4>How to make your mp4 properly fragmented</h4>
+        <pre>
+  $ ./mp4fragment ~/Movies/devtools.mp4 devtools_fragmented.mp4
+  $ ./mp4dump devtools_fragmented.mp4 | head
+  [<span class="lime">ftyp</span>] size=8+28
+  major_brand = isom
+  minor_version = 200
+  compatible_brand = isom
+  compatible_brand = iso2
+  compatible_brand = avc1
+  compatible_brand = mp41
+  compatible_brand = iso5
+  [<span class="lime">moov</span>] size=8+1109
+  [mvhd] size=12+96
+        </pre>
+        <p><span class="lime">ftype</span> followed by a single <span class="lime">moov</span>...</p>
+      </section>
+      <section>
+        <h2>HTMLMediaElement</h2>
+        <img src="audio_tag.png" alt="audio tag url relationship"/>
+      </section>
+      <section>
+        <h2>Media Source Extensions</h2>
+        <img src="mse_rel.png" alt="media source extension relationship"/>
       </section>
     </section>
     <section>
