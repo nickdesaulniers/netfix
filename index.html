@@ -400,10 +400,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   m = MediaSource
   m.onsourceopen = () =&gt;
     s = m.addSourceBuffer 'codec'
-    while numChunks &lt;= totalChunks
-      s.appendBuffer arrayBufferOfContent
+    s.onupdateend = () =&gt;
       if numChunks === totalChunks
         m.endOfStream()
+      else
+        s.appendBuffer nextChunk
+    s.appendBuffer arrayBufferOfContent
   video.src = URL.createObjectURL m
         </code></pre>
       </section>
