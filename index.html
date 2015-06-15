@@ -35,6 +35,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <style>
   .red { color: red; }
   .lime { color: lime; }
+  .orange { color: orange; }
 </style>
 </head>
 
@@ -356,15 +357,11 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <pre>
   $ ./mp4dump ~/Movies/devtools.mp4 | head
   [<span class="red">ftyp</span>] size=8+24
-  major_brand = isom
-  minor_version = 200
-  compatible_brand = isom
-  compatible_brand = iso2
-  compatible_brand = avc1
-  compatible_brand = mp41
+    ...
   [<span class="red">free</span>] size=8+0
   [<span class="red">mdat</span>] size=8+85038690
   [<span class="red">moov</span>] size=8+599967
+    ...
           </pre>
           <p class="fragment">...<span class="lime">ftype</span> followed by a single <span class="lime">moov</span>...</p>
       </section>
@@ -374,17 +371,20 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   $ ./mp4fragment ~/Movies/devtools.mp4 devtools_fragmented.mp4
   $ ./mp4dump devtools_fragmented.mp4 | head
   [<span class="lime">ftyp</span>] size=8+28
-  major_brand = isom
-  minor_version = 200
-  compatible_brand = isom
-  compatible_brand = iso2
-  compatible_brand = avc1
-  compatible_brand = mp41
-  compatible_brand = iso5
+    ...
   [<span class="lime">moov</span>] size=8+1109
-  [mvhd] size=12+96
+    ...
+  [<span class="orange">moof</span>] size=8+600
+    ...
+  [<span class="orange">mdat</span>] size=8+138679
+  [<span class="orange">moof</span>] size=8+536
+    ...
+  [<span class="orange">mdat</span>] size=8+24490
+    ...
+  ...
         </pre>
-        <p><span class="lime">ftype</span> followed by a single <span class="lime">moov</span>...</p>
+        <p>...<span class="lime">ftype</span> followed by a single <span class="lime">moov</span>...</p>
+        <p>You'll also notice multiple <span class="orange">moof</span>/<span class="orange">mdat</span> pairs.</p>
       </section>
       <section>
         <h2>HTMLMediaElement</h2>
