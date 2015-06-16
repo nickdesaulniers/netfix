@@ -342,7 +342,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </table>
         <p style="margin-top: -1em;">
         <small>* Needs codec specified MediaSource.isTypeSupported('mime; codecs=""'); <a href="https://wiki.whatwg.org/wiki/Video_type_parameters#MPEG-4">List</a></small>
-          <small>** whitelisted to very few sites like YouTube, FF 38-41/42? Test in Nightly</small>
+        <small>** whitelisted to very few sites like YouTube, FF 38-41/42? Test in Nightly, media.mediasource.whitelist -&gt; false in about:config</small>
         </p>
       </section>
       <section>
@@ -410,10 +410,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </code></pre>
       </section>
       <section>
-        <h2>Demo: buffer ASAP</h2>
+        <h2><a href="demo/bufferAll.html">Demo: buffer ASAP</a></h2>
       </section>
       <section>
-        <h2>Demo: Buffer just in time</h2>
+        <h2><a href="demo/bufferWhenNeeded.html">Demo: Buffer just in time</a></h2>
       </section>
     </section>
     <section>
@@ -427,6 +427,28 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       <section>
         <h2>Asset pipeline</h2>
         <img src="asset_pipeline.png" alt="How to generate all of the assets">
+      </section>
+      <section>
+        <h2>Browser caching</h2>
+        <p>Some browsers over-aggresively cache CORS related content.</p>
+        <p>In Safari, Develop &gt; Empty Caches or Disable Caches</p>
+        <p>In Firefox 41, enable private browsing.</p>
+      </section>
+      <section>
+        <h2>DASH demo</h2>
+        <p>bugs</p>
+        <ul>
+          <li>
+            <a href="https://github.com/Dash-Industry-Forum/dash.js/issues/492">dash.js &amp; Safari</a>
+          </li>
+          <li>
+            <a href="https://github.com/google/shaka-player/issues/101">shaka &amp; Firefox</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Live streaming</h2>
+        <a href="http://www.w3.org/TR/media-source/#widl-SourceBuffer-appendStream-void-ReadableStream-stream-unsigned-long-long-maxSize">SourceBuffer.prototype.appendStream</a>
       </section>
     </section>
 </div>
