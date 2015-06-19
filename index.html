@@ -159,6 +159,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       <section>
         <h2>FFmpeg</h2>
         <p>Your free and Open Source transcoding swiss army knife.</p>
+        <pre>
+          <code>
+  $ ffmpeg -h full 2>/dev/null| wc -l
+  5424
+          </code>
+        </pre>
       </section>
       <section>
         <h2>The Extreme Basics</h2>
@@ -385,6 +391,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </pre>
         <p>...<span class="lime">ftype</span> followed by a single <span class="lime">moov</span>...</p>
         <p>You'll also notice multiple <span class="orange">moof</span>/<span class="orange">mdat</span> pairs.</p>
+        <p>When transcoding with ffmpeg, you'll want the flag: -movflags frag_keyframe+empty_moov</p>
       </section>
       <section>
         <h2>HTMLMediaElement</h2>
